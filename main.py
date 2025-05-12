@@ -44,7 +44,7 @@ def main():
     # Randomly select a target region
     if eligible_countries:
         target_name = random.choice(eligible_countries)
-        print(f"Guess a state or region with a population of at least {30 if difficulty == 1 else 10 if difficulty == 2 else 0} million.")
+        print(f"Guess a country or region with a population of at least {30 if difficulty == 1 else 10 if difficulty == 2 else 0} million.")
     else:
         raise ValueError("No eligible countries found based on the selected difficulty level.")
     
@@ -66,7 +66,7 @@ def main():
         current_data = region_data.get_region_data_by_name(current_name)
 
         if not current_data:
-            print("State or Region not found.")
+            print("Country or Region not found.")
             # pattern match
             similar_countries = region_trie.find_similar(current_name, max_distance=2)
   
@@ -122,8 +122,8 @@ def main():
     # show the right answer
     end_time = time.time()
     elapsed_time = end_time - start_time
-    print(f"Wrong! The correct state or region is {target_name}.")
-    print(f"State or Region data: {('|').join(target_data)}")
+    print(f"Wrong! The correct country or region is {target_name}.")
+    print(f"Country or Region data: {('|').join(target_data)}")
 
 if __name__ == "__main__":
     main()
