@@ -1,9 +1,9 @@
 import csv
 
-class CountryData:
+class RegionData:
     def __init__(self, filename: str):
         self.filename = filename
-        self.country_names, self.data, self.categories = self._load_data()
+        self.region_names, self.data, self.categories = self._load_data()
         self.avgs = self._calculate_averages()
         self.standard_deviation = self._calculate_standard_deviation()
 
@@ -12,8 +12,8 @@ class CountryData:
             reader = csv.reader(f)
             categories = next(reader)
 
-            # using country name as key
-            data = {data[1]: data for data in reader}
+            # using region name as key
+            data = {data[0]: data for data in reader}
         return list(data.keys()), data, categories
 
 
@@ -51,8 +51,8 @@ class CountryData:
     def get_data(self) -> dict[str, list[float|str]]:
         return self.data
     
-    def get_country_names(self) -> list[str]:
-        return self.country_names
+    def get_region_names(self) -> list[str]:
+        return self.region_names
     
     def get_categories(self) -> list[str]:
         return self.categories
@@ -60,15 +60,31 @@ class CountryData:
     def get_standard_deviation(self) -> list[float]:
         return self.standard_deviation
     
-    def get_country_data_by_name(self, name: str) -> list[float|str]:
+    def get_region_data_by_name(self, name: str) -> list[float|str]:
         return self.data.get(name, None)
+    
+    def get_countries_by_population(self, min_population: int = 0) -> list[str]:
+
+        countries = []
+        population_index = self.categories.index("population")
+        
+        for region_name, region_data in self.data.items():
+            try:
+                population = float(region_data[population_index])
+                if population >= min_population:
+                    countries.append(region_name)
+            except (ValueError, TypeError, IndexError):
+                # Skip countries with invalid population data
+                continue
+                
+        return countries
 
     
 if __name__ == "__main__":
     filename = "global_stats_2022.csv"
-    country_data = CountryData(filename)
-    print("Categories:", country_data.categories)
-    print("Averages:", country_data.avgs)
-    print("Standard Deviations:", country_data.standard_deviation)
-    print("data:", country_data.get_data()["United States"])
-    print("countries:", country_data.country_names[:10])
+    region_data = RegionData(filename)
+    print("Categories:", region_data.categories)
+    print("Averages:", region_data.avgs)
+    print("Standard Deviations:", region_data.standard_deviation)
+    print("data:", region_data.get_data()["United States"])
+    print("countries:", region_data.region_names[:10])

@@ -24,19 +24,19 @@ def compare_stats(current: float, target: float, std_dev: float) -> str:
     difference = cal_difference_by_standard_deviation(current, target, std_dev)  # Assuming std_dev is 1 for simplicity
 
     if difference > 3:
-        return REDCOLOR + ' ' + str(round(current, 2)) + ' ' + '↓' * 3 + ' ' + "\033[0m"
+        return REDCOLOR + ' ' + str(round(current, 0)) + ' ' + '↓' * 3 + ' ' + "\033[0m"
     elif difference > 1 and difference <= 3:
-        return ORANGECOLOR + ' ' + str(round(current, 2)) + ' ' + '↓' * 2 + ' ' + "\033[0m"
+        return ORANGECOLOR + ' ' + str(round(current, 0)) + ' ' + '↓' * 2 + ' ' + "\033[0m"
     elif difference > 0 and difference <= 1:
-        return YELLOWCOLOR + ' '+ str(round(current, 2)) + ' ' + '↓' + ' ' + "\033[0m"
+        return YELLOWCOLOR + ' '+ str(round(current, 0)) + ' ' + '↓' + ' ' + "\033[0m"
     elif difference < -3:
-        return REDCOLOR + ' '+ str(round(current, 2)) + ' ' + '↑' * 3 + ' ' + "\033[0m"
+        return REDCOLOR + ' '+ str(round(current, 0)) + ' ' + '↑' * 3 + ' ' + "\033[0m"
     elif difference < -1 and difference >= -3:
-        return ORANGECOLOR + ' '+ str(round(current, 2)) + ' ' + '↑' * 2 + ' ' + "\033[0m"
+        return ORANGECOLOR + ' '+ str(round(current, 0)) + ' ' + '↑' * 2 + ' ' + "\033[0m"
     elif difference < 0 and difference >= -1:
-        return YELLOWCOLOR + ' '+ str(round(current, 2)) + ' ' + '↑' + ' ' + "\033[0m"
+        return YELLOWCOLOR + ' '+ str(round(current, 0)) + ' ' + '↑' + ' ' + "\033[0m"
     else:
-        return GREENCOLOR + ' '+ str(round(current, 2)) + ' ' + "\033[0m"
+        return GREENCOLOR + ' '+ str(round(current, 0)) + ' ' + "\033[0m"
     
 def compare_string(current: str, target: str) -> str:
 
