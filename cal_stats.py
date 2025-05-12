@@ -1,7 +1,7 @@
-REDCOLOR = "\033[41;37m"
-ORANGECOLOR = "\033[43;37m"
-YELLOWCOLOR = "\033[43;37m" 
-GREENCOLOR = "\033[42;37m"
+REDCOLOR = "\033[41;30m"
+ORANGECOLOR = "\033[43;30m"
+YELLOWCOLOR = "\033[103;30m" 
+GREENCOLOR = "\033[42;30m"
 
 def cal_difference_by_standard_deviation(current: float, target: float, std_dev: float) -> float:
     """
