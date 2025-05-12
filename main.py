@@ -12,13 +12,17 @@ def main():
     # randomly select a country
     target_name = random.choice(country_data.get_country_names())
     print(f"Target Country: {target_name}")
+
+    # for debugging
+    target_name = "Martinique"
+
     target_data = country_data.get_country_data_by_name(target_name)
     
     # ten chances to guess the country name
     chances = 10
 
     # print the categories
-    infos = ' '.join(categories) + '\n'
+    infos = [categories]
     
     while chances:
         # get country name
@@ -31,8 +35,9 @@ def main():
             print("Country not found.")
             continue
 
+        info = []
         # get stats
-        for i, category in enumerate(categories):
+        for i in range(len(categories)):
             # get stats
             cur_stat = current_data[i]
             target_stat = target_data[i]
@@ -46,18 +51,17 @@ def main():
                 target_stat = float(target_stat)
                 # compare stats
                 compare_stat = compare_stats(cur_stat, target_stat, country_data.get_standard_deviation()[i])
-                infos += compare_stat + ' '
+                info.append(compare_stat)
 
 
             except ValueError:
         
                 # compare string
                 compare_str = compare_string(cur_stat, target_stat)
-                infos += compare_str + ' '
+                info.append(compare_str)
 
-        # switch to next line
-        print(infos)
-        infos += '\n'
+        infos.append(info[:])
+        print('\n'.join([('|'.join(line)) for line in infos]))
 
         # check if the country name is correct
         if current_name == target_name:
@@ -71,6 +75,6 @@ if __name__ == "__main__":
     main()
 
 
-# TODO: 1. 吧main函数放到一个单独的文件中
-# TODO: 2. 格式化输出为表格
-# TODO: 3. 增加难易度模式 开始如果选择简单 就只从人口>一定数量的国家中选择
+# TODO: 1. 增加难易度模式 开始如果选择简单 就只从人口>一定数量的国家中选择
+# TODO: 2. 用字典树进行近似提示以及前缀提示
+# TODO: 3. 增加计时器, 统计时间

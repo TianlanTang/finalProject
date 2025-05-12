@@ -28,7 +28,7 @@ def compare_stats(current: float, target: float, std_dev: float) -> str:
     elif difference > 1 and difference <= 3:
         return ORANGECOLOR + ' ' + str(round(current, 2)) + ' ' + '↓' * 2 + ' ' + "\033[0m"
     elif difference > 0 and difference <= 1:
-        return YELLOWCOLOR + ' '+ str(round(current, 2)) + ' ' + '↓' + "\033[0m"
+        return YELLOWCOLOR + ' '+ str(round(current, 2)) + ' ' + '↓' + ' ' + "\033[0m"
     elif difference < -3:
         return REDCOLOR + ' '+ str(round(current, 2)) + ' ' + '↑' * 3 + ' ' + "\033[0m"
     elif difference < -1 and difference >= -3:
@@ -41,9 +41,9 @@ def compare_stats(current: float, target: float, std_dev: float) -> str:
 def compare_string(current: str, target: str) -> str:
 
     if current == target:
-        return GREENCOLOR + ' ' + current + ' ' + "\033[0m"
+        return GREENCOLOR + ' ' + str(current) + ' ' + "\033[0m"
     elif current != target:
-        return REDCOLOR + ' ' + current + ' ' + "\033[0m"
+        return REDCOLOR + ' ' + str(current) + ' ' + "\033[0m"
 
 
     
