@@ -1,4 +1,4 @@
-REDCOLOR = "\033[41;30m"
+PURPLECOLOR = "\033[45;30m"
 ORANGECOLOR = "\033[43;30m"
 YELLOWCOLOR = "\033[103;30m" 
 GREENCOLOR = "\033[42;30m"
@@ -24,13 +24,13 @@ def compare_stats(current: float, target: float, std_dev: float) -> str:
     difference = cal_difference_by_standard_deviation(current, target, std_dev)  # Assuming std_dev is 1 for simplicity
 
     if difference > 3:
-        return REDCOLOR + ' ' + str(round(current, 0)) + ' ' + '↓' * 3 + ' ' + "\033[0m"
+        return PURPLECOLOR + ' ' + str(round(current, 0)) + ' ' + '↓' * 3 + ' ' + "\033[0m"
     elif difference > 1 and difference <= 3:
         return ORANGECOLOR + ' ' + str(round(current, 0)) + ' ' + '↓' * 2 + ' ' + "\033[0m"
     elif difference > 0 and difference <= 1:
         return YELLOWCOLOR + ' '+ str(round(current, 0)) + ' ' + '↓' + ' ' + "\033[0m"
     elif difference < -3:
-        return REDCOLOR + ' '+ str(round(current, 0)) + ' ' + '↑' * 3 + ' ' + "\033[0m"
+        return PURPLECOLOR + ' '+ str(round(current, 0)) + ' ' + '↑' * 3 + ' ' + "\033[0m"
     elif difference < -1 and difference >= -3:
         return ORANGECOLOR + ' '+ str(round(current, 0)) + ' ' + '↑' * 2 + ' ' + "\033[0m"
     elif difference < 0 and difference >= -1:
@@ -43,7 +43,7 @@ def compare_string(current: str, target: str) -> str:
     if current == target:
         return GREENCOLOR + ' ' + str(current) + ' ' + "\033[0m"
     elif current != target:
-        return REDCOLOR + ' ' + str(current) + ' ' + "\033[0m"
+        return PURPLECOLOR + ' ' + str(current) + ' ' + "\033[0m"
 
 
     

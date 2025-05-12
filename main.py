@@ -108,8 +108,9 @@ def main():
                 info.append(compare_str)
 
         infos.append(info[:])
-        print('\n'.join([('|'.join(line)) for line in infos]))        
+        print('\n'.join([('|'.join(line)) for line in infos]))    
 
+        chances -= 1    
         # correct answer
         if current_name == target_name:
             end_time = time.time()
@@ -117,7 +118,7 @@ def main():
             print(f"Correct! You guessed the region in {10 - chances} tries and it took you {elapsed_time:.0f} seconds.")
             return
 
-        chances -= 1
+        
 
     # show the right answer
     end_time = time.time()
